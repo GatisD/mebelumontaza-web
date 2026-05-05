@@ -140,12 +140,14 @@ export default function Kontakti() {
       {/* Map */}
       <section className="px-4 sm:px-6 lg:px-8 pb-16 max-w-7xl mx-auto" aria-label="Darba zonā — Latvija">
         <FadeInOnScroll>
-          <div className="aspect-[4/3] sm:aspect-[16/6] rounded-lg overflow-hidden border border-border bg-muted">
+          <div className="relative aspect-[4/3] sm:aspect-[16/6] rounded-lg overflow-hidden border border-border bg-muted">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d286753.72!2d24.105!3d56.946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eedfb2e854eba9%3A0x5582024f3a2effd7!2sR%C4%ABga%2C%20LV-1050!5e0!3m2!1slv!2slv!4v1683000000000!5m2!1slv!2slv"
-              title="Rīgas karte — mūsu darba zona Latvijā"
-              className="w-full h-full"
+              title="Mūsu atrašanās vieta Rīgā"
+              className="absolute inset-0 w-full h-full block"
+              style={{ border: 0 }}
               loading="lazy"
+              allowFullScreen
               referrerPolicy="no-referrer-when-downgrade"
               aria-label="Google karte — Rīga un apkārtne"
             />

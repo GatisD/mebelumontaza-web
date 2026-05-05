@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
+import FloatingActions from "@/components/FloatingActions";
 
 export default function Layout() {
   return (
@@ -15,6 +16,7 @@ export default function Layout() {
         <Outlet />
       </main>
       <Footer />
+      <FloatingActions />
     </>
   );
 }
