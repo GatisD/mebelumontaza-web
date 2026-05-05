@@ -10,7 +10,14 @@ export default defineConfig(({ isSsrBuild }) => ({
     sitemap({
       hostname: "https://mebelumontaza.lv",
       generateRobotsTxt: false,
-      // dynamicRoutes nav vajadzīgs — SSG pats ģenerē no dist HTML failiem
+      dynamicRoutes: [
+        "/",
+        "/koka-majinas",
+        "/parvaksanas-serviss",
+        "/portfolio",
+        "/kontakti",
+        "/privatuma-politika",
+      ],
     }),
   ],
   resolve: { alias: { "@": path.resolve(__dirname, "./src") } },
