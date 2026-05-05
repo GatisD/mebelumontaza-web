@@ -1,12 +1,11 @@
 import { Outlet } from "react-router-dom";
-import { HelmetProvider } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
 
 export default function Layout() {
   return (
-    <HelmetProvider>
+    <>
       <SmoothScroll />
       <a href="#main-content" className="skip-to-content">
         Pāriet uz saturu
@@ -16,6 +15,6 @@ export default function Layout() {
         <Outlet />
       </main>
       <Footer />
-    </HelmetProvider>
+    </>
   );
 }
