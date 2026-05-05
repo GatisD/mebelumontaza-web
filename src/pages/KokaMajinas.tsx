@@ -9,26 +9,26 @@ const products = [
   {
     title: "Klasiskā koka mājiņa",
     desc: "Divi stāvi, kāpnes, logs. Ideāla bērniem no 3 gadiem. Izmērs 1.5×1.5m.",
-    img: "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=600&h=450&fit=crop",
-    alt: "Brūna koka bērnu mājiņa ar kāpnēm zaļā dārzā vasarā",
+    img: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80&auto=format&fit=crop",
+    alt: "Bērnu koka rotaļu mājiņa zaļā dārzā vasarā",
   },
   {
     title: "Mājiņa ar slidkalniņu",
     desc: "Slidkalniņš, šūpoles, smilšu kaste komplektā. Bērniem 3–12 gadi.",
-    img: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600&h=450&fit=crop",
-    alt: "Krāsaina koka bērnu mājiņa ar sarkanu slidkalniņu un šūpolēm",
+    img: "https://images.unsplash.com/photo-1591474200742-8e512e6f98f8?w=800&q=80&auto=format&fit=crop",
+    alt: "Bērnu koka mājiņa kokā ar kāpnēm un platformu",
   },
   {
     title: "Dārza šķūnis",
     desc: "Instrumentu un dārza tehnikas glabāšanai. Slēdzenai, ventilācija.",
-    img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=450&fit=crop",
-    alt: "Pelēks koka dārza šķūnis ar divviru durvīm uz zāles",
+    img: "https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=800&q=80&auto=format&fit=crop",
+    alt: "Koka dārza šķūnis ar divviru durvīm uz zāles",
   },
   {
     title: "Premium mājiņa",
     desc: "Izturīgs priedes koks, jumts ar bitumena šindeli. Garantija 5 gadi.",
-    img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=450&fit=crop",
-    alt: "Liela koka bērnu mājiņa ar terasi un kāpnēm privātmājā",
+    img: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800&q=80&auto=format&fit=crop",
+    alt: "Koka šķūnis dabīgā vidē ar priedes konstrukciju",
   },
 ];
 

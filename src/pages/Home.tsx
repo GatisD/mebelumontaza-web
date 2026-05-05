@@ -159,10 +159,10 @@ export default function Home() {
           <FadeInOnScroll delay={0.3} className="relative">
             <div className="relative rounded-lg overflow-hidden aspect-[4/3]">
               <img
-                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop&q=80"
-                alt="Profesionāls meistars saliek Ikea mēbeles dzīvoklī"
-                width={800}
-                height={600}
+                src="https://images.unsplash.com/photo-1581092446327-9b52bd1570c2?w=1920&q=80&auto=format&fit=crop"
+                alt="Profesionāls meistars ar urbjmašīnu pie mēbeļu montāžas darba"
+                width={1920}
+                height={1440}
                 loading="eager"
                 fetchPriority="high"
                 decoding="sync"
@@ -290,20 +290,20 @@ export default function Home() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {[
             {
-              src: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&h=450&fit=crop",
-              alt: "Dīvāns ar krāsainu spilvenu un koka galdiņš saliktā dzīvojamā istabā",
+              src: "https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=800&q=80&auto=format&fit=crop",
+              alt: "Meistars ar urbjmašīnu skrūvē mēbeles montāžas laikā",
             },
             {
-              src: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=450&fit=crop",
-              alt: "Balts Ikea gultas rāmis ar matraci saliktā guļamistabā",
+              src: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80&auto=format&fit=crop",
+              alt: "Salikta moderna istaba ar mēbelēm pēc montāžas darba",
             },
             {
-              src: "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=600&h=450&fit=crop",
-              alt: "Bērnu koka mājiņa ar slidkalniņu zaļā dārzā",
+              src: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80&auto=format&fit=crop",
+              alt: "Bērnu koka rotaļu mājiņa zaļā dārzā",
             },
             {
-              src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=450&fit=crop",
-              alt: "Moderna virtuve ar baltām skapju fasādēm — montāžas rezultāts",
+              src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80&auto=format&fit=crop",
+              alt: "Kartona kastes pārvākšanai sakārtotas istabā",
             },
           ].map((img, i) => (
             <FadeInOnScroll key={i} delay={i * 0.1}>

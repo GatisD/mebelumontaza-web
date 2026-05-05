@@ -100,10 +100,10 @@ export default function ParvaksanasServiss() {
             <FadeInOnScroll delay={0.2}>
               <div className="rounded-lg overflow-hidden aspect-[4/3]">
                 <img
-                  src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=600&fit=crop"
-                  alt="Pārvākšanas darbinieks ar kastēm pie furgona mājas priekšā"
-                  width={800}
-                  height={600}
+                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80&auto=format&fit=crop"
+                  alt="Kartona kastes pārvākšanai sakārtotas tukšā dzīvoklī"
+                  width={1920}
+                  height={1440}
                   loading="eager"
                   fetchPriority="high"
                   decoding="sync"
