@@ -1,0 +1,10 @@
+{
+  "name": "Mebeļu Montāža",
+  "short_name": "MebeļuMontāža",
+  "icons": [
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ],
+  "theme_color": "#FFD600",
+  "background_color": "#0A0A0A",
+  "display": "standalone"
+}

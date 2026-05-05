@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Inter", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+  }
+
+  *:focus-visible {
+    outline: 2px solid #FFD600;
+    outline-offset: 2px;
+  }
+
+  .skip-to-content {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    @apply bg-primary text-primary-foreground;
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+    z-index: 9999;
+    border-radius: 4px;
+  }
+
+  .skip-to-content:focus {
+    top: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
