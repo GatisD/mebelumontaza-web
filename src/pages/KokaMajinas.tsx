@@ -3,7 +3,7 @@ import { JsonLd, breadcrumbSchema } from "@/components/JsonLd";
 import FadeInOnScroll from "@/components/animations/FadeInOnScroll";
 import HoverLift from "@/components/animations/HoverLift";
 import ContactForm from "@/components/ContactForm";
-import { TreePine, Shield, Hammer, CheckCircle, ArrowRight } from "lucide-react";
+import { TreePine, Shield, Hammer, CheckCircle } from "lucide-react";
 
 const products = [
   {
@@ -135,22 +135,22 @@ export default function KokaMajinas() {
               Kā notiek uzstādīšana?
             </h2>
           </FadeInOnScroll>
-          <ol className="grid grid-cols-1 sm:grid-cols-4 gap-6 text-center" role="list">
+          <ol className="grid grid-cols-1 sm:grid-cols-4 gap-6 text-center">
             {[
               { step: "01", title: "Pieprasījums", desc: "Iesniedziet formu vai zvaniet — sazinamies 1h." },
               { step: "02", title: "Apmeklējums", desc: "Izvērtējam vietu un sagatavojam precīzu piedāvājumu." },
               { step: "03", title: "Montāža", desc: "Profesionāla uzstādīšana 1 dienā." },
               { step: "04", title: "Nodošana", desc: "Pārbaudām stabilitāti un droša uzstādīšana." },
             ].map((item, i) => (
-              <FadeInOnScroll key={item.step} delay={i * 0.1} className="flex flex-col items-center">
-                <li>
+              <li key={item.step} className="list-none">
+                <FadeInOnScroll delay={i * 0.1} className="flex flex-col items-center">
                   <div className="w-12 h-12 bg-primary/10 border border-primary/30 rounded-lg flex items-center justify-center mb-3">
                     <span className="text-primary font-heading font-bold text-sm">{item.step}</span>
                   </div>
                   <h3 className="font-heading font-bold text-foreground mb-2">{item.title}</h3>
                   <p className="text-muted-foreground text-sm">{item.desc}</p>
-                </li>
-              </FadeInOnScroll>
+                </FadeInOnScroll>
+              </li>
             ))}
           </ol>
         </div>

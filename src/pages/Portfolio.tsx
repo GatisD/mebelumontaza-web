@@ -125,7 +125,7 @@ export default function Portfolio() {
             <button
               key={c.key}
               onClick={() => setActive(c.key)}
-              className={`px-4 py-2 rounded text-sm font-heading font-medium transition-colors ${
+              className={`min-h-[44px] px-4 py-2 rounded text-sm font-heading font-medium transition-colors ${
                 active === c.key
                   ? "bg-primary text-primary-foreground"
                   : "border border-border text-muted-foreground hover:border-primary/50 hover:text-primary"
@@ -140,35 +140,34 @@ export default function Portfolio() {
 
       {/* Gallery */}
       <section className="px-4 sm:px-6 lg:px-8 pb-20 max-w-7xl mx-auto" aria-label="Portfolio galerija">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" role="list">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 list-none p-0">
           {filtered.map((item, i) => (
-            <FadeInOnScroll key={`${item.title}-${i}`} delay={(i % 4) * 0.1}>
-              <HoverLift>
-                <article
-                  className="bg-card border border-border rounded-lg overflow-hidden group hover:border-primary/40 transition-colors"
-                  role="listitem"
-                >
-                  <div className="aspect-[4/3] overflow-hidden relative">
-                    <img
-                      src={item.img}
-                      alt={item.alt}
-                      width={600}
-                      height={450}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
-                  </div>
-                  <div className="p-4">
-                    <h2 className="font-heading font-bold text-sm text-foreground mb-1">{item.title}</h2>
-                    <p className="text-muted-foreground text-xs">{item.desc}</p>
-                  </div>
-                </article>
-              </HoverLift>
-            </FadeInOnScroll>
+            <li key={`${item.title}-${i}`}>
+              <FadeInOnScroll delay={(i % 4) * 0.1}>
+                <HoverLift>
+                  <article className="bg-card border border-border rounded-lg overflow-hidden group hover:border-primary/40 transition-colors">
+                    <div className="aspect-[4/3] overflow-hidden relative">
+                      <img
+                        src={item.img}
+                        alt={item.alt}
+                        width={600}
+                        height={450}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
+                    </div>
+                    <div className="p-4">
+                      <h2 className="font-heading font-bold text-sm text-foreground mb-1">{item.title}</h2>
+                      <p className="text-muted-foreground text-xs">{item.desc}</p>
+                    </div>
+                  </article>
+                </HoverLift>
+              </FadeInOnScroll>
+            </li>
           ))}
-        </div>
+        </ul>
 
         {filtered.length === 0 && (
           <p className="text-center text-muted-foreground py-12">Šajā kategorijā vēl nav darbu.</p>

@@ -90,7 +90,7 @@ export default function ParvaksanasServiss() {
               </div>
               <a
                 href="tel:+37112345678"
-                className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-heading font-bold px-6 py-3.5 rounded hover:bg-primary/90 transition-colors"
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-heading font-bold px-6 py-3.5 rounded hover:bg-primary/90 transition-colors min-h-[44px]"
                 aria-label="Zvanīt pa tālruni +371 12345678"
               >
                 Zvanīt tagad
@@ -125,19 +125,19 @@ export default function ParvaksanasServiss() {
             </h2>
           </div>
         </FadeInOnScroll>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" role="list">
           {steps.map((step, i) => (
             <FadeInOnScroll key={step.title} delay={i * 0.1}>
-              <div className="bg-card border border-border rounded-lg p-6 flex flex-col items-start">
+              <li className="bg-card border border-border rounded-lg p-6 flex flex-col items-start list-none">
                 <div className="w-12 h-12 bg-primary/10 rounded flex items-center justify-center mb-4">
                   <step.icon className="w-6 h-6 text-primary" aria-hidden="true" />
                 </div>
                 <h3 className="font-heading font-bold text-foreground mb-2">{step.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
-              </div>
+              </li>
             </FadeInOnScroll>
           ))}
-        </div>
+        </ul>
       </section>
 
       {/* What's included */}
@@ -151,7 +151,7 @@ export default function ParvaksanasServiss() {
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left" role="list">
             {included.map((item, i) => (
               <FadeInOnScroll key={i} delay={i * 0.07}>
-                <li className="flex items-start gap-3">
+                <li className="flex items-start gap-3 list-none">
                   <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" aria-hidden="true" />
                   <span className="text-muted-foreground text-sm">{item}</span>
                 </li>
@@ -168,7 +168,7 @@ export default function ParvaksanasServiss() {
             Bieži uzdotie jautājumi par pārvākšanu
           </h2>
         </FadeInOnScroll>
-        <dl className="flex flex-col gap-4 mb-12">
+        <div className="flex flex-col gap-4 mb-12">
           {[
             {
               q: "Cik ātri varat organizēt pārvākšanu?",
@@ -184,13 +184,13 @@ export default function ParvaksanasServiss() {
             },
           ].map((faq, i) => (
             <FadeInOnScroll key={i} delay={i * 0.08}>
-              <div className="bg-card border border-border rounded-lg p-5">
-                <dt className="font-heading font-bold text-foreground mb-2">{faq.q}</dt>
-                <dd className="text-muted-foreground text-sm leading-relaxed">{faq.a}</dd>
-              </div>
+              <section className="bg-card border border-border rounded-lg p-5">
+                <h3 className="font-heading font-bold text-foreground mb-2">{faq.q}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{faq.a}</p>
+              </section>
             </FadeInOnScroll>
           ))}
-        </dl>
+        </div>
       </section>
 
       {/* Form */}

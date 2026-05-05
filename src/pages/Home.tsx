@@ -134,7 +134,7 @@ export default function Home() {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <MagneticButton
-                  className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-heading font-bold px-6 py-3.5 rounded hover:bg-primary/90 transition-colors text-base"
+                  className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-heading font-bold px-6 py-3.5 rounded hover:bg-primary/90 transition-colors text-base min-h-[44px]"
                   onClick={() => {
                     document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });
                   }}
@@ -145,7 +145,7 @@ export default function Home() {
 
                 <a
                   href="tel:+37112345678"
-                  className="inline-flex items-center justify-center gap-2 border border-primary/50 text-primary font-heading font-bold px-6 py-3.5 rounded hover:bg-primary/10 transition-colors text-base"
+                  className="inline-flex items-center justify-center gap-2 border border-primary/50 text-primary font-heading font-bold px-6 py-3.5 rounded hover:bg-primary/10 transition-colors text-base min-h-[44px]"
                   aria-label="Zvanīt: +371 12345678"
                 >
                   <Phone className="w-4 h-4" aria-hidden="true" />
@@ -181,20 +181,20 @@ export default function Home() {
       {/* STATS */}
       <section className="bg-card border-y border-border py-12" aria-label="Mūsu rādītāji">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <dl className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, i) => (
               <FadeInOnScroll key={stat.label} delay={i * 0.1}>
                 <div className="text-center">
-                  <dt className="text-muted-foreground text-xs font-heading font-bold uppercase tracking-wider mb-1">
+                  <p className="text-muted-foreground text-xs font-heading font-bold uppercase tracking-wider mb-1">
                     {stat.label}
-                  </dt>
-                  <dd className="text-4xl font-heading font-bold text-primary">
+                  </p>
+                  <p className="text-4xl font-heading font-bold text-primary">
                     <CountUp to={stat.value} suffix={stat.suffix} />
-                  </dd>
+                  </p>
                 </div>
               </FadeInOnScroll>
             ))}
-          </dl>
+          </div>
         </div>
       </section>
 
@@ -221,7 +221,7 @@ export default function Home() {
                   <p className="text-muted-foreground text-sm leading-relaxed flex-1">{s.desc}</p>
                   <Link
                     to={s.href}
-                    className="mt-4 inline-flex items-center gap-2 text-primary text-sm font-medium hover:gap-3 transition-all"
+                    className="mt-4 inline-flex items-center gap-2 text-primary text-sm font-medium hover:gap-3 transition-all min-h-[44px]"
                     aria-label={`${s.cta} par ${s.title}`}
                   >
                     {s.cta}
@@ -278,7 +278,7 @@ export default function Home() {
             </div>
             <Link
               to="/portfolio"
-              className="hidden sm:inline-flex items-center gap-2 text-primary text-sm font-medium border border-primary/40 px-4 py-2 rounded hover:bg-primary/10 transition-colors"
+              className="hidden sm:inline-flex items-center gap-2 text-primary text-sm font-medium border border-primary/40 px-4 py-2 rounded hover:bg-primary/10 transition-colors min-h-[44px]"
               aria-label="Skatīt visu portfolio galeriju"
             >
               Visi darbi
@@ -328,7 +328,7 @@ export default function Home() {
         <FadeInOnScroll className="mt-6 text-center sm:hidden">
           <Link
             to="/portfolio"
-            className="inline-flex items-center gap-2 text-primary text-sm font-medium border border-primary/40 px-4 py-2 rounded"
+            className="inline-flex items-center gap-2 text-primary text-sm font-medium border border-primary/40 px-4 py-2 rounded min-h-[44px]"
           >
             Visi darbi
             <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -352,7 +352,11 @@ export default function Home() {
             {testimonials.map((t, i) => (
               <FadeInOnScroll key={t.name} delay={i * 0.15}>
                 <blockquote className="bg-background border border-border rounded-lg p-6 h-full flex flex-col">
-                  <div className="flex gap-1 mb-4" aria-label={`${t.stars} zvaigznes no 5`}>
+                  <div
+                    className="flex gap-1 mb-4"
+                    role="img"
+                    aria-label={`${t.stars} zvaigznes no 5`}
+                  >
                     {Array.from({ length: t.stars }).map((_, j) => (
                       <Star key={j} className="w-4 h-4 text-primary fill-primary" aria-hidden="true" />
                     ))}
@@ -385,7 +389,7 @@ export default function Home() {
               <address className="not-italic">
                 <a
                   href="tel:+37112345678"
-                  className="flex items-center gap-3 text-foreground hover:text-primary transition-colors mb-4 group"
+                  className="flex items-center gap-3 text-foreground hover:text-primary transition-colors mb-4 group min-h-[44px]"
                   aria-label="Zvanīt: +371 12345678"
                 >
                   <div className="w-10 h-10 bg-primary/10 rounded flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -420,20 +424,16 @@ export default function Home() {
             </div>
           </FadeInOnScroll>
 
-          <dl className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4">
             {faqs.map((faq, i) => (
               <FadeInOnScroll key={i} delay={i * 0.08}>
-                <div className="bg-background border border-border rounded-lg p-5">
-                  <dt className="font-heading font-bold text-foreground mb-2">
-                    {faq.q}
-                  </dt>
-                  <dd className="text-muted-foreground text-sm leading-relaxed">
-                    {faq.a}
-                  </dd>
-                </div>
+                <section className="bg-background border border-border rounded-lg p-5">
+                  <h3 className="font-heading font-bold text-foreground mb-2">{faq.q}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{faq.a}</p>
+                </section>
               </FadeInOnScroll>
             ))}
-          </dl>
+          </div>
         </div>
       </section>
     </>
