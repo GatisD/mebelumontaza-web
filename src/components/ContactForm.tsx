@@ -2,7 +2,21 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import { Send, CheckCircle } from "lucide-react";
+
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined;
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined;
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined;
+const CONTACT_EMAIL =
+  (import.meta.env.VITE_CONTACT_EMAIL as string | undefined) || "info@mebelumontaza.lv";
+
+const serviceLabels: Record<string, string> = {
+  montaza: "Mēbeļu montāža",
+  parvaksanas: "Pārvākšanas serviss",
+  "koka-majinas": "Bērnu koka mājiņa / šķūnis",
+  cits: "Cits",
+};
 
 const schema = z.object({
   name: z.string().min(2, "Vārds ir obligāts (min. 2 rakstzīmes)"),
@@ -12,6 +26,23 @@ const schema = z.object({
 });
 
 type FormData = z.infer<typeof schema>;
+
+function emailjsConfigured(): boolean {
+  return Boolean(SERVICE_ID && TEMPLATE_ID && PUBLIC_KEY);
+}
+
+function buildMailtoFallback(data: FormData): string {
+  const subject = `Pieprasījums no mājaslapas — ${serviceLabels[data.service] || data.service}`;
+  const body = [
+    `Vārds: ${data.name}`,
+    `Tālrunis: ${data.phone}`,
+    `Pakalpojums: ${serviceLabels[data.service] || data.service}`,
+    "",
+    "Apraksts:",
+    data.description,
+  ].join("\n");
+  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
 
 export default function ContactForm({ title = "Iesniegt pieprasījumu" }: { title?: string }) {
   const [submitted, setSubmitted] = useState(false);
@@ -28,26 +59,57 @@ export default function ContactForm({ title = "Iesniegt pieprasījumu" }: { titl
 
   async function onSubmit(data: FormData) {
     setError(null);
+
+    // Fallback uz mailto, ja EmailJS nav konfigurēts (sk. .env.example)
+    if (!emailjsConfigured()) {
+      try {
+        if (typeof window !== "undefined") {
+          window.location.href = buildMailtoFallback(data);
+        }
+        setSubmitted(true);
+        reset();
+      } catch {
+        setError(
+          `Forma vēl nav pilnībā konfigurēta. Lūdzu, rakstiet uz ${CONTACT_EMAIL} vai zvaniet.`,
+        );
+      }
+      return;
+    }
+
     try {
-      // TODO: pievienot Resend/Edge Function integrāciju pēc deployment
-      await new Promise((r) => setTimeout(r, 800));
-      console.log("Form submission:", data);
+      await emailjs.send(
+        SERVICE_ID as string,
+        TEMPLATE_ID as string,
+        {
+          name: data.name,
+          phone: data.phone,
+          service: serviceLabels[data.service] || data.service,
+          description: data.description,
+          to_email: CONTACT_EMAIL,
+        },
+        { publicKey: PUBLIC_KEY as string },
+      );
       setSubmitted(true);
       reset();
-    } catch {
+    } catch (err) {
+      console.error("EmailJS submission failed:", err);
       setError("Kļūda nosūtot pieprasījumu. Lūdzu, mēģiniet vēlreiz vai zvaniet.");
     }
   }
 
   if (submitted) {
     return (
-      <div className="flex flex-col items-center justify-center gap-4 py-12 text-center" role="alert" aria-live="polite">
+      <div
+        className="flex flex-col items-center justify-center gap-4 py-12 text-center"
+        role="alert"
+        aria-live="polite"
+      >
         <CheckCircle className="w-12 h-12 text-primary" aria-hidden="true" />
         <h3 className="font-heading font-bold text-xl">Pieprasījums nosūtīts!</h3>
         <p className="text-muted-foreground">Atsauksimies 1 stundas laikā darba laikā.</p>
         <button
           onClick={() => setSubmitted(false)}
-          className="text-primary text-sm underline hover:no-underline"
+          className="text-primary text-sm underline hover:no-underline min-h-[44px] px-3"
         >
           Iesniegt vēl vienu pieprasījumu
         </button>
@@ -168,7 +230,7 @@ export default function ContactForm({ title = "Iesniegt pieprasījumu" }: { titl
       <button
         type="submit"
         disabled={isSubmitting}
-        className="flex items-center justify-center gap-2 bg-primary text-primary-foreground font-heading font-bold text-sm px-6 py-3.5 rounded hover:bg-primary/90 disabled:opacity-60 transition-colors"
+        className="flex items-center justify-center gap-2 bg-primary text-primary-foreground font-heading font-bold text-sm px-6 py-3.5 rounded hover:bg-primary/90 disabled:opacity-60 transition-colors min-h-[44px]"
         aria-busy={isSubmitting}
       >
         <Send className="w-4 h-4" aria-hidden="true" />

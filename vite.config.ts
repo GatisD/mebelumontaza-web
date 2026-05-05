@@ -10,13 +10,12 @@ export default defineConfig(({ isSsrBuild }) => ({
     sitemap({
       hostname: "https://mebelumontaza.lv",
       generateRobotsTxt: false,
+      // NB: plugin auto-adds "/" — neuzskaitām to dynamicRoutes lai izvairītos no dublikāta
       dynamicRoutes: [
-        "/",
         "/koka-majinas",
         "/parvaksanas-serviss",
         "/portfolio",
         "/kontakti",
-        "/privatuma-politika",
       ],
     }),
   ],

@@ -21,7 +21,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             to="/"
-            className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
+            className="flex items-center gap-2 text-foreground hover:text-primary transition-colors min-h-[44px]"
             aria-label="Mebeļu Montāža — uz sākumlapu"
           >
             <Hammer className="w-6 h-6 text-primary" aria-hidden="true" />
@@ -38,7 +38,7 @@ export default function Navbar() {
                 <li key={link.href}>
                   <Link
                     to={link.href}
-                    className={`text-sm font-medium transition-colors hover:text-primary ${
+                    className={`inline-flex items-center min-h-[44px] text-sm font-medium transition-colors hover:text-primary ${
                       active ? "text-primary" : "text-muted-foreground"
                     }`}
                     aria-current={active ? "page" : undefined}
@@ -54,13 +54,13 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
             <a
               href="tel:+37112345678"
-              className="hidden sm:inline-flex items-center gap-2 bg-primary text-primary-foreground font-heading font-bold text-sm px-4 py-2 rounded hover:bg-primary/90 transition-colors"
+              className="hidden sm:inline-flex items-center gap-2 bg-primary text-primary-foreground font-heading font-bold text-sm px-4 py-2 rounded hover:bg-primary/90 transition-colors min-h-[44px]"
               aria-label="Zvanīt: +371 12345678"
             >
               Zvanīt tagad
             </a>
             <button
-              className="md:hidden p-2 text-muted-foreground hover:text-primary transition-colors"
+              className="md:hidden inline-flex items-center justify-center min-w-[44px] min-h-[44px] text-muted-foreground hover:text-primary transition-colors"
               onClick={() => setOpen(!open)}
               aria-expanded={open}
               aria-label={open ? "Aizvērt izvēlni" : "Atvērt izvēlni"}
@@ -80,7 +80,7 @@ export default function Navbar() {
                   <li key={link.href}>
                     <Link
                       to={link.href}
-                      className={`block px-3 py-2 rounded text-sm font-medium transition-colors hover:bg-muted hover:text-primary ${
+                      className={`flex items-center min-h-[44px] px-3 py-2 rounded text-sm font-medium transition-colors hover:bg-muted hover:text-primary ${
                         active ? "text-primary bg-muted" : "text-muted-foreground"
                       }`}
                       onClick={() => setOpen(false)}
@@ -94,7 +94,7 @@ export default function Navbar() {
               <li>
                 <a
                   href="tel:+37112345678"
-                  className="block px-3 py-2 bg-primary text-primary-foreground font-heading font-bold text-sm rounded text-center"
+                  className="flex items-center justify-center min-h-[44px] px-3 py-2 bg-primary text-primary-foreground font-heading font-bold text-sm rounded text-center"
                 >
                   Zvanīt tagad
                 </a>

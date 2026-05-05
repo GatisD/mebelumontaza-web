@@ -1,73 +1,52 @@
-# React + TypeScript + Vite
+# mebelumontaza-web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Mēbeļu montāžas un pārvākšanas servisa mājaslapa. React + TypeScript + Vite, deployed uz Vercel ar SSG (vite-react-ssg).
 
-Currently, two official plugins are available:
+## Tech stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 18 + TypeScript + Vite
+- TailwindCSS + Radix UI
+- React Router v6
+- Framer Motion (animācijas)
+- React Hook Form + Zod (formu validācija)
+- EmailJS (kontaktformas e-pasti)
+- vite-plugin-sitemap (SEO sitemap)
 
-## React Compiler
+## Lokālais development
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev    # http://localhost:8080
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Build:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run build      # SSG build (vite-react-ssg)
+npm run preview    # apskatīt produkcijas build
 ```
+
+## Form setup (EmailJS)
+
+Kontaktforma izmanto [EmailJS](https://dashboard.emailjs.com/), lai sūtītu e-pastus tieši no klienta puses bez backend servera. Ja env vars trūkst, forma fallback uz `mailto:` ar pre-filled body.
+
+**3 soļi konfigurācijai:**
+
+1. **Signup** — izveido kontu vietnē <https://dashboard.emailjs.com/>
+2. **Service + Template:**
+   - Pievieno e-pasta servisu (Gmail / Outlook / cits) → kopē **Service ID**
+   - Izveido e-pasta veidni ar mainīgajiem `{{name}}`, `{{phone}}`, `{{service}}`, `{{description}}` → kopē **Template ID**
+   - Account → API Keys → kopē **Public Key**
+3. **Vercel env vars** — Project Settings → Environment Variables → pievieno:
+   - `VITE_EMAILJS_SERVICE_ID`
+   - `VITE_EMAILJS_TEMPLATE_ID`
+   - `VITE_EMAILJS_PUBLIC_KEY`
+   - `VITE_CONTACT_EMAIL` (saņēmējs un mailto fallbackam)
+
+Pēc env vars pievienošanas — re-deploy projektu Vercel pusē, lai jaunie mainīgie tiktu iekļauti build laikā.
+
+Skat. arī `.env.example` failu.
+
+## Deployment
+
+Pievienots Vercel — push uz `main` branch automātiski trigerē jaunu deployment.
